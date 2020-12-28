@@ -1,9 +1,30 @@
+import CarModel from '../model/CarModel';
 import './CarsPage.css';
 
 function CarsPage() {
+
+    const carsData = [];
+    carsData.push(new CarModel("Toyota", "Yaris", 2002, 230000));
+    carsData.push(new CarModel("Toyota", "Coroal", 2015, 105000));
+    carsData.push(new CarModel("Hyundai", "i30", 2010, 170000));
+
+    // convert car data into table rows
+
     return (
-        <div>
-            Cars Page
+        <div className="container">
+            <table className="table">
+                <thead>
+                    <tr>
+                        <th>Brand</th>
+                        <th>Model</th>
+                        <th>Year</th>
+                        <th>KM</th>
+                        <th>KM Per Year</th>
+                    </tr>
+                </thead>
+                <tbody>
+                </tbody>
+            </table>
         </div>
     )
 }
