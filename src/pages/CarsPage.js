@@ -9,8 +9,16 @@ function CarsPage() {
     carsData.push(new CarModel("Toyota", "Coroal", 2015, 105000));
     carsData.push(new CarModel("Hyundai", "i30", 2010, 170000));
 
+    // Finding the highestKmPerYear car
+    let highestKmPerYear = carsData[0];
+    for (let i = 1; i < carsData.length; i++) {
+        if (carsData[i].kmPerYear() > highestKmPerYear.kmPerYear()) {
+            highestKmPerYear = carsData[i];
+        }
+    }
+
     // convert car data into table rows
-    const carRows = carsData.map(car => <CarRow car={car}/>);
+    const carRows = carsData.map(car => <CarRow car={car} isHighestKMPerYear={car === highestKmPerYear}/>);
 
     return (
         <div className="p-cars container">
