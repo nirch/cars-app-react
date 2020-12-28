@@ -1,13 +1,20 @@
+import { useState } from 'react';
 import CarRow from '../components/CarRow/CarRow';
 import CarModel from '../model/CarModel';
 import './CarsPage.css';
 
 function CarsPage() {
+    const [carsData, setCarsData] = useState([  new CarModel("Toyota", "Yaris", 2002, 230000),
+                                                new CarModel("Toyota", "Coroal", 2015, 105000),
+                                                new CarModel("Hyundai", "i30", 2010, 170000)
+                                            ]);
 
-    const carsData = [];
-    carsData.push(new CarModel("Toyota", "Yaris", 2002, 230000));
-    carsData.push(new CarModel("Toyota", "Coroal", 2015, 105000));
-    carsData.push(new CarModel("Hyundai", "i30", 2010, 170000));
+    function addCar() {
+        setCarsData(carsData.concat(new CarModel("Subaru", "B4", 2005, 233000)));
+        // let newArr = [...carsData];
+        // newArr.push(new CarModel("Subaru", "B4", 2005, 233000));
+        // setCarsData(newArr);        
+    }
 
     // Finding the highestKmPerYear car
     let highestKmPerYear = carsData[0];
@@ -18,7 +25,7 @@ function CarsPage() {
     }
 
     // convert car data into table rows
-    const carRows = carsData.map(car => <CarRow car={car} isHighestKMPerYear={car === highestKmPerYear}/>);
+    const carRows = carsData.map(car => <CarRow car={car} isHighestKMPerYear={car === highestKmPerYear} />);
 
     return (
         <div className="p-cars container">
@@ -36,6 +43,7 @@ function CarsPage() {
                     {carRows}
                 </tbody>
             </table>
+            <button className="btn btn-primary" onClick={addCar}>Add Car</button>
         </div>
     )
 }
