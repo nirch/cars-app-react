@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { Button, Container, Table } from 'react-bootstrap';
 import CarRow from '../components/CarRow/CarRow';
 import CarModel from '../model/CarModel';
 import './CarsPage.css';
@@ -28,22 +29,24 @@ function CarsPage() {
     const carRows = carsData.map(car => <CarRow car={car} isHighestKMPerYear={car === highestKmPerYear} />);
 
     return (
-        <div className="p-cars container">
-            <table className="table">
-                <thead>
-                    <tr>
-                        <th>Brand</th>
-                        <th>Model</th>
-                        <th>Year</th>
-                        <th>KM</th>
-                        <th>KM Per Year</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {carRows}
-                </tbody>
-            </table>
-            <button className="btn btn-primary" onClick={addCar}>Add Car</button>
+        <div className="p-cars">
+            <Container>
+                <Table>
+                    <thead>
+                        <tr>
+                            <th>Brand</th>
+                            <th>Model</th>
+                            <th>Year</th>
+                            <th>KM</th>
+                            <th>KM Per Year</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {carRows}
+                    </tbody>
+                </Table>
+                <Button variant="primary" onClick={addCar}>Add Car</Button>
+            </Container>
         </div>
     )
 }
