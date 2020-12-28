@@ -1,3 +1,4 @@
+import CarRow from '../components/CarRow/CarRow';
 import CarModel from '../model/CarModel';
 import './CarsPage.css';
 
@@ -9,9 +10,10 @@ function CarsPage() {
     carsData.push(new CarModel("Hyundai", "i30", 2010, 170000));
 
     // convert car data into table rows
+    const carRows = carsData.map(car => <CarRow car={car}/>);
 
     return (
-        <div className="container">
+        <div className="p-cars container">
             <table className="table">
                 <thead>
                     <tr>
@@ -23,6 +25,7 @@ function CarsPage() {
                     </tr>
                 </thead>
                 <tbody>
+                    {carRows}
                 </tbody>
             </table>
         </div>
