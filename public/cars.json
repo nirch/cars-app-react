@@ -1,0 +1,20 @@
+[
+    {
+        "brand": "Toyota",
+        "model": "Yaris",
+        "year": 2002,
+        "km": 230000
+    },
+    {
+        "brand": "Toyota",
+        "model": "Coroal",
+        "year": 2015,
+        "km": 105000
+    },
+    {
+        "brand": "Hyundai",
+        "model": "i30",
+        "year": 2010,
+        "km": 170000
+    }
+]

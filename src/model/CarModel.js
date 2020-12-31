@@ -1,10 +1,17 @@
 
 class CarModel {
-    constructor(brand, model, year, km) {
-        this.brand = brand;
-        this.model = model;
-        this.year = year;
-        this.km = km;
+    constructor(plainCarOrBrand, model, year, km) {
+        if (typeof plainCarOrBrand === 'object') {
+            this.brand = plainCarOrBrand.brand;
+            this.model = plainCarOrBrand.model;
+            this.year = plainCarOrBrand.year;
+            this.km = plainCarOrBrand.km;
+        } else {
+            this.brand = plainCarOrBrand;
+            this.model = model;
+            this.year = year;
+            this.km = km;    
+        }
     }
 
     kmPerYear() {

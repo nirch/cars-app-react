@@ -1,14 +1,20 @@
-import { useState } from 'react';
-import { Button, Container, Table } from 'react-bootstrap';
+import axios from 'axios';
+import { useEffect, useState } from 'react';
+import { Button, Container, Spinner, Table } from 'react-bootstrap';
 import CarRow from '../components/CarRow/CarRow';
 import CarModel from '../model/CarModel';
 import './CarsPage.css';
 
 function CarsPage() {
-    const [carsData, setCarsData] = useState([  new CarModel("Toyota", "Yaris", 2002, 230000),
-                                                new CarModel("Toyota", "Coroal", 2015, 105000),
-                                                new CarModel("Hyundai", "i30", 2010, 170000)
-                                            ]);
+    const [carsData, setCarsData] = useState([]);
+    const [isLoading, setIsLoading] = useState(true);
+
+    useEffect(()=>{
+        axios.get("cars.json").then(res=>{
+            setCarsData(res.data.map(plainCar => new CarModel(plainCar)));
+            setIsLoading(false);
+        });
+    }, []);
 
     function addCar() {
         setCarsData(carsData.concat(new CarModel("Subaru", "B4", 2005, 233000)));
@@ -26,10 +32,11 @@ function CarsPage() {
     }
 
     // convert car data into table rows
-    const carRows = carsData.map(car => <CarRow car={car} isHighestKMPerYear={car === highestKmPerYear} />);
+    const carRows = carsData.map((car, index) => <CarRow key={index} car={car} isHighestKMPerYear={car === highestKmPerYear} />);
 
     return (
         <div className="p-cars">
+            {isLoading ? <Spinner animation="border" /> :
             <Container>
                 <Table>
                     <thead>
@@ -46,7 +53,7 @@ function CarsPage() {
                     </tbody>
                 </Table>
                 <Button variant="primary" onClick={addCar}>Add Car</Button>
-            </Container>
+            </Container>}
         </div>
     )
 }
