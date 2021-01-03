@@ -6,6 +6,8 @@ import HomePage from './pages/HomePage';
 function App() {
   return (
     <div>
+      {/* If I render something before (or after) the router it will render always (in any route) */}
+      {/* <p>blabla</p> */}
       <HashRouter>
         <Switch>
           <Route exact path="/"><HomePage/></Route>
