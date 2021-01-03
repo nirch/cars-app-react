@@ -24,7 +24,7 @@ function CarsPage(props) {
         }
         
         // convert car data into table rows
-        carRows = cars.map((car, index) => <CarRow key={index} car={car} isHighestKMPerYear={car === highestKmPerYear} />);
+        carRows = cars.map((car, index) => <CarRow key={index} car={car} index={index} isHighestKMPerYear={car === highestKmPerYear} />);
     }
 
 
