@@ -26,7 +26,7 @@ function App() {
         <Switch>
           <Route exact path="/"><HomePage/></Route>
           <Route exact path="/cars"><CarsPage cars={cars} onAddCar={newCar=>setCars(cars.concat(newCar))}/></Route>
-          <Route exact path="/cars/:index"><CarDeatilsPage/></Route>
+          <Route exact path="/cars/:index"><CarDeatilsPage cars={cars}/></Route>
         </Switch>
       </HashRouter>
     </div>
