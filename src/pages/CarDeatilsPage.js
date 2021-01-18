@@ -20,6 +20,12 @@ function CarDeatilsPage(props) {
                 <p>KM: {car.km}</p>
                 <p>Year: {car.year}</p>
                 <p>KM per Year: {car.kmPerYear()}</p>
+                <iframe
+                    width="600"
+                    height="450"
+                    frameborder="0" style={{border:0}}
+                    src={`https://www.google.com/maps/embed/v1/place?key=AIzaSyAi5g_KBXE7z_IVdXbbr3oJV3E8YUn7Fec&q=${car.address}`} allowfullscreen>
+                </iframe>
             </Container>}
         </div>
     );

@@ -8,7 +8,7 @@ function CarsPage(props) {
     const {cars, onAddCar} = props;
 
     function addCar() {
-        onAddCar(new CarModel("Subaru", "B4", 2005, 233000));
+        onAddCar(new CarModel("Subaru", "B4", 2005, 233000, "Hertzel 10, Haifa"));
     }
 
     // Checking that cars is not null
