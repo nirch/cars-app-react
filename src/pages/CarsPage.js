@@ -1,11 +1,12 @@
 
+import { GoogleApiWrapper, Map } from 'google-maps-react';
 import { Button, Container, Spinner, Table } from 'react-bootstrap';
 import CarRow from '../components/CarRow/CarRow';
 import CarModel from '../model/CarModel';
 import './CarsPage.css';
 
 function CarsPage(props) {
-    const {cars, onAddCar} = props;
+    const {cars, onAddCar, google} = props;
 
     function addCar() {
         onAddCar(new CarModel("Subaru", "B4", 2005, 233000, "Hertzel 10, Haifa"));
@@ -47,9 +48,12 @@ function CarsPage(props) {
                     </tbody>
                 </Table>
                 <Button variant="primary" onClick={addCar}>Add Car</Button>
+                <Map google={google} zoom={7} style={{width: "600px", height: "450px"}} initialCenter={{lat: 40.854885,lng: -88.081807}}/>
             </Container>}
         </div>
     )
 }
 
-export default CarsPage;
+export default GoogleApiWrapper({
+    apiKey: ("AIzaSyAi5g_KBXE7z_IVdXbbr3oJV3E8YUn7Fec")
+})(CarsPage)
