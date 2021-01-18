@@ -12,10 +12,19 @@ function App() {
 
   useEffect(()=>{
     axios.get("cars.json").then(res=>{
-        setCars(res.data.map(plainCar => new CarModel(plainCar)));
+        const newCars = res.data.map(plainCar => new CarModel(plainCar));
+        newCars.forEach(async (car) => {
+          await car.calcCarPosition();
+        });
+
+        setCars(newCars);
     });
   }, []);
 
+  async function addCar(newCar) {
+    await newCar.calcCarPosition();
+    setCars(cars.concat(newCar))
+  }
 
 
   return (
@@ -25,7 +34,7 @@ function App() {
       <HashRouter>
         <Switch>
           <Route exact path="/"><HomePage/></Route>
-          <Route exact path="/cars"><CarsPage cars={cars} onAddCar={newCar=>setCars(cars.concat(newCar))}/></Route>
+          <Route exact path="/cars"><CarsPage cars={cars} onAddCar={addCar}/></Route>
           <Route exact path="/cars/:index"><CarDeatilsPage cars={cars}/></Route>
         </Switch>
       </HashRouter>

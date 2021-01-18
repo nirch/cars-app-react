@@ -1,5 +1,6 @@
 
 import { GoogleApiWrapper, Map, Marker } from 'google-maps-react';
+import { useEffect } from 'react';
 import { Button, Container, Spinner, Table } from 'react-bootstrap';
 import CarRow from '../components/CarRow/CarRow';
 import CarModel from '../model/CarModel';
@@ -14,6 +15,7 @@ function CarsPage(props) {
 
     // Checking that cars is not null
     let carRows;
+    let carMarkers;
     if (cars)
     {
         // Finding the highestKmPerYear car
@@ -26,6 +28,9 @@ function CarsPage(props) {
         
         // convert car data into table rows
         carRows = cars.map((car, index) => <CarRow key={index} car={car} index={index} isHighestKMPerYear={car === highestKmPerYear} />);
+
+        // convert car position into map markers
+        carMarkers = cars.map(car => <Marker position={car.position}/>);
     }
 
 
@@ -49,8 +54,7 @@ function CarsPage(props) {
                 </Table>
                 <Button variant="primary" onClick={addCar}>Add Car</Button>
                 <Map google={google} zoom={7} style={{width: "600px", height: "450px"}} initialCenter={{lat: 31.4013742,lng: 33.9607117}}>
-                    <Marker position={{lat: 32.0879267, lng: 34.7622266}}/>
-                    <Marker position={{lat: 32.7996175, lng: 34.9817566}}/>
+                    {carMarkers}
                 </Map>
             </Container>}
         </div>
