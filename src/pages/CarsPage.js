@@ -1,5 +1,5 @@
 
-import { GoogleApiWrapper, Map } from 'google-maps-react';
+import { GoogleApiWrapper, Map, Marker } from 'google-maps-react';
 import { Button, Container, Spinner, Table } from 'react-bootstrap';
 import CarRow from '../components/CarRow/CarRow';
 import CarModel from '../model/CarModel';
@@ -48,7 +48,10 @@ function CarsPage(props) {
                     </tbody>
                 </Table>
                 <Button variant="primary" onClick={addCar}>Add Car</Button>
-                <Map google={google} zoom={7} style={{width: "600px", height: "450px"}} initialCenter={{lat: 40.854885,lng: -88.081807}}/>
+                <Map google={google} zoom={7} style={{width: "600px", height: "450px"}} initialCenter={{lat: 31.4013742,lng: 33.9607117}}>
+                    <Marker position={{lat: 32.0879267, lng: 34.7622266}}/>
+                    <Marker position={{lat: 32.7996175, lng: 34.9817566}}/>
+                </Map>
             </Container>}
         </div>
     )
